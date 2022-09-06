@@ -1,0 +1,13 @@
+* {
+  /* background-color: #212529; */
+  color: rgb(226, 221, 221);
+}
+
+
+.buttons {
+
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+}
+
