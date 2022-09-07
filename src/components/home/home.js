@@ -14,7 +14,6 @@ function Home() {
 	return (
 		<main>
 			<div id="intro" className="sfondo"> {/* className="sfondo" applica lo sfondo in background*/}
-			{console.log(alertShow)}
 			{(isLoggedIn && alertShow)  && (
 				<Container className='mt-3 home__alert_container'>
 				<Alert className='home__alert' variant="info" show={alertShow} onClose={() => {sessionStorage.setItem('alert', false); setAlertShow(false)}} dismissible>

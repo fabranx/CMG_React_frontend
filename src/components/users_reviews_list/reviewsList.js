@@ -31,9 +31,7 @@ function ReviewsList({reviews}){
           <Container key={review.id} className='reviewsList__width py-2 mt-3'>
             <div className='text-center p-2 mt-2'>
               {/* <img src={review.profile_image}></img> */}
-              <Figure className='reviewList_immagine-profilo mx-auto d-flex justify-content-center align-items-center'>
-              {console.log(review.profile_image)}
-                
+              <Figure className='reviewList_immagine-profilo mx-auto d-flex justify-content-center align-items-center'>              
                 <Figure.Image 
                   className='reviewList_immagine-profilo'
                   fluid={true} 
