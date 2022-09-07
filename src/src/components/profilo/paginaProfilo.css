@@ -1,0 +1,29 @@
+.background-profilo {
+  height: calc(100vh - 56px);
+  background: linear-gradient(0deg, rgb(12, 37, 65) 0%, rgba(17,17,29,1) 71%, rgba(34,42,51,1) 100%); 
+  overflow: auto;
+  position: fixed;
+  min-width: 100%;
+  max-width: 100%;
+  z-index: -1;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.immagine-profilo {
+  object-fit: cover;
+  /* height: 200px; */
+  width: 200px;
+}
+
+.caption-profilo{
+  font-size: 50px;
+}
+
+.settings-button-rotate{
+  transition: transform .3s ease-in-out; 
+}
+.settings-button-rotate:hover{
+  transform: rotate(30deg);
+}

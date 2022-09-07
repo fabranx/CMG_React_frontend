@@ -1,0 +1,72 @@
+.cover_carousel {
+  object-fit: cover;
+  height: auto;
+  width: auto;
+  display: block;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  max-height: 300px;
+}
+
+.custom-item{
+  padding-left: 20px;
+  padding-right: 20px;
+  overflow: visible;
+
+}
+
+.carousel_card_text{
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.6) 100%); 
+  text-shadow: 1px 2px 2px black;
+  font-size: 105%;
+  text-align: center;
+  color: lightgoldenrodyellow;
+
+  /*TESTO NON SELEZIONABILE*/
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
+
+
+#card-pointer:hover{
+  cursor: pointer;
+}
+
+.imgOverlay{
+  padding: 0;
+}
+
+.imgOverlay:hover {
+  padding: 0;
+  background: rgba(132, 83, 83, 0.382);
+
+}
+
+
+.carousel-card-overflow{
+  overflow-x: clip;
+  overflow-y: visible;
+
+  overflow-inline: clip;
+}
+
+
+
+/*MDB*/
+
+.carousel__zoom{
+  -webkit-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear; 
+}
+
+.carousel__zoom:hover{
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+}

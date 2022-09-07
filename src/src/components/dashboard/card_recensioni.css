@@ -1,0 +1,30 @@
+.card {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  overflow: hidden;
+  border-color: rgb(12, 82, 161);
+  border-width: 0px;
+}
+
+.card-header {
+  background-color: rgba(40, 82, 197, 0.842);
+}
+
+.list-group-item {
+  background-color: rgb(44, 43, 61);
+  border-color: rgb(12, 131, 236);
+  color: rgb(255, 255, 255);
+}
+.list-group-item:hover {
+  background-color: rgb(0, 132, 165);
+}
+
+.category-link {
+  color: white;
+  text-decoration: none;
+}
+.category-link:hover {
+  color: white;
+  background-color: rgb(83, 43, 226);
+  cursor: pointer;
+}

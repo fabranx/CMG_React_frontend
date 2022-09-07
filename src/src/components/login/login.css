@@ -1,0 +1,39 @@
+.background-login {
+  height: calc(100vh - 56px);
+  background: linear-gradient(0deg, rgb(51, 41, 153) 0%, rgba(17,17,29,1) 71%, rgba(34,42,51,1) 100%); 
+  position: fixed;
+  min-width: 100%;
+  max-width: 100%;
+  z-index: -1;
+  overflow: auto;
+
+  /* min-height: 100%; */
+  display: flex;
+  flex-direction: column;
+}
+
+.link-password {
+    color: white;
+    text-decoration: none;
+} 
+.link-password :hover{
+  color: rgb(143, 222, 82);
+}
+
+.form_width {
+  width: 50%;
+}
+
+@media (max-width: 992px) {
+  .form_width {
+    width: 80%;
+  }
+}
+
+/* a {
+  color: rgb(240, 225, 20);
+  text-decoration: none;
+}
+a:hover {
+   color: rgb(106, 178, 245)
+} */

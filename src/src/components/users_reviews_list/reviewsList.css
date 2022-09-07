@@ -1,0 +1,27 @@
+
+.reviewsList__width{
+  max-width: 900px;
+  border: 1px solid grey;
+  border-radius: 30px;
+  background-color: rgb(43, 43, 43);
+}
+
+.reviewsList__circularbar_size{
+  width: 120px;
+}
+
+.reviewsList__link{
+  text-decoration: none;
+  color: rgb(0, 165, 207);
+}
+
+.reviewsList__link:hover{
+  color: rgb(200, 248, 252);
+
+}
+
+.reviewList_immagine-profilo {
+  object-fit: cover;
+  height: 35px;
+  width: 35px;
+}

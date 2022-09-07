@@ -1,0 +1,59 @@
+.tab_items__rating_background{
+  background-color: rgb(154, 154, 154);
+  border-radius: .25rem;
+  display: block;
+  width: 4rem;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  text-shadow: 1px 1px 1.5px black;
+}
+
+.tab_items__link{
+  text-decoration: none;
+  color: rgb(98, 224, 182);
+}
+.tab_items__link:hover{
+  text-decoration: none;
+  color: cornflowerblue
+}
+
+.tab_items__circularbar_size{
+  width: 100px;
+}
+
+
+
+
+
+/*BOOTSTRAP ELEMENTS*/
+
+.accordion-button{
+  background-color: rgb(21, 25, 29);
+  color:white;
+}
+
+.accordion-button:focus{
+  background-color: rgb(48, 86, 123);
+  box-shadow: 0 0 0 .15rem rgba(86, 166, 198, 0.25);
+}
+
+.accordion-button:not(.collapsed){
+  color:white;
+  background-color: rgb(48, 86, 123);
+}
+
+.accordion-button:after {
+  background-image: none
+}
+
+.accordion-button:not(.collapsed)::after{
+  background-image: none
+}
+
+.accordion-item{
+  background-color: rgb(61, 65, 69);
+}
+
+
+
+

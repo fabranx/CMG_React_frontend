@@ -1,0 +1,16 @@
+.background404 {
+  height: calc(100vh - 56px);
+  background: linear-gradient(0deg, rgb(131, 49, 49) 0%, rgba(17,17,29,1) 71%, rgba(34,42,51,1) 100%); 
+  position: fixed;
+  overflow: auto;
+  min-width: 100%;
+  max-width: 100%;
+  z-index: -1;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.not-found-margin-top{
+  margin-top: 30vh;
+}
