@@ -18,8 +18,6 @@ import Footer from '../footer/footer'
 
 function GiochiDetail()
 {
-  const generi = {'Point-and-click': 'Punta e Clicca', 'Fighting': 'Picchiaduro', 'Shooter': 'Sparatutto', 'Music': 'Musicali', 'Platform': 'Platform', 'Puzzle': 'Rompicapo', 'Racing': 'Corse', 'Real Time Strategy (RTS)': 'Strategico in tempo reale', 'Role-playing (RPG)': 'Gioco di Ruolo', 'Simulator': 'Simulativo', 'Sport': 'Sportivo', 'Strategy': 'Strategia', 'Turn-based strategy (TBS)': 'Strategico a Turni', 'Tactical': 'Tattico', "Hack and slash/Beat 'em up": 'Hack and Slash', 'Quiz/Trivia': 'Quiz/Trivia', 'Pinball': 'Pinball', 'Adventure': 'Avventura', 'Indie': 'Indie', 'Arcade': 'Arcade', 'Visual Novel': 'Visual Novel', 'Card & Board Game': 'Carte e Gioco da Tavolo', 'MOBA': 'MOBA'}
-
   let {igdbID} = useParams()
   const [isDataFetched, setDataFetched] = useState(false)
   const [gameInfo, setGameInfo] = useState({})
@@ -53,7 +51,7 @@ function GiochiDetail()
 
     client.getReviewsByGameId(igdbID)
     .then(res =>{
-      setUsersReviews(res.data.filter(review => review.author != client.pk))
+      setUsersReviews(res.data.filter(review => review.author !== client.pk))
     })
     .catch(err => console.log(err))
 
@@ -72,7 +70,7 @@ function GiochiDetail()
       })
       .catch(err => console.log(err))
     }
-  }, [igdbID , reload])
+  }, [igdbID , reload, isLoggedIn])
 
   const location = useLocation()
   useEffect(() => {

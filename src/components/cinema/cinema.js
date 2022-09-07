@@ -2,7 +2,7 @@ import './cinema.css'
 import {Container, Form, Button} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CustomCarousel from '../custom_carousel/custom_carousel';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback} from 'react';
 import {client} from "../../Client"
 import Loading from '../loadingpage/loadingpage';
 import SearchResults from '../search_results/search_results';
@@ -22,8 +22,7 @@ function Cinema() {
 
   const generi = ['Animazione', 'Azione', 'Commedia', 'Avventura', 'Documentario', 'Fantasy', 'Horror', 'Fantascienza', 'Thriller']
 
-
-  function fetchMovies(controller){
+  const fetchMovies = useCallback((controller) => {
     if(reloadContent)
     {
 
@@ -34,6 +33,9 @@ function Cinema() {
         setDataFetched(true)
       }
       else{
+        if(!controller){
+          controller = new AbortController()
+        }
         client.LatestMoviesTMDB(generi, controller)
         .then((res) => {
           setMoviesData(res.data)
@@ -47,7 +49,7 @@ function Cinema() {
         })
       }
     }
-  }
+  },[])
 
   useEffect(() => {
     const controller = new AbortController()
@@ -58,7 +60,7 @@ function Cinema() {
       setReloadContent(false)
     }
 
-  }, [fetchError])
+  }, [fetchError, fetchMovies])
 
 
   function onFormChange(e)

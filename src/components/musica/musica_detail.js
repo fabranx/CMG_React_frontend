@@ -1,7 +1,7 @@
 import './musica_detail.css'
 import {useState, useEffect, useContext, useMemo} from 'react'
 import {useLocation, useParams} from 'react-router-dom'
-import { Button, Container, Image, Form, Row, Col, Alert } from 'react-bootstrap'
+import { Button, Container, Image, Row, Col} from 'react-bootstrap'
 import { client, requestsWithTokenHandler } from '../../Client'
 import Loading from '../loadingpage/loadingpage'
 import NotFound from '../not_found/notfound'
@@ -51,7 +51,7 @@ function MusicaDetail()
 
     client.getReviewsByAlbumId(albumID)
     .then(res =>{
-      setUsersReviews(res.data.filter(review => review.author != client.pk))
+      setUsersReviews(res.data.filter(review => review.author !== client.pk))
     })
     .catch(err => console.log(err))
 
@@ -70,11 +70,11 @@ function MusicaDetail()
       })
       .catch(err => console.log(err))
     }
-  }, [albumID])
+  }, [albumID, isLoggedIn])
 
   const location = useLocation()
   useEffect(() => {
-    // 'aggiorna' la pagina quando cambia l'indirizzo (albumId)
+    // 'resetta' la pagina quando cambia l'indirizzo (albumId)
     setDataFetched(false)
     setVote(null)
     setMusicInfo({})
@@ -186,10 +186,9 @@ function MusicaDetail()
         }
         else{
           disc_tracks[track.disc_number].push(track)
-        }
-        
+        }    
+        return true  // react warning array.prototype.map expects a return value from arrow function
       })
-      // return disc_tracks
 
       return(
         <>

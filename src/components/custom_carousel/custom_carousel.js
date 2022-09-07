@@ -57,7 +57,7 @@ function CustomCarousel(props)
 
         break;
     }
-  },[])
+  },[props.dataCategory])
 
   const responsive = {
     desktop_md: {

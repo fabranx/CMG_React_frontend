@@ -6,7 +6,6 @@ import {useHistory} from 'react-router-dom'
 function SearchSelect({users}){
 
   const history = useHistory()
-  const [searchInput, setSearchInput] = React.useState('')
   const [options, setOptions] = React.useState([]) 
 
   function handleChange(e){

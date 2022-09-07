@@ -5,6 +5,7 @@ import {DateTime} from 'luxon'
 import { Link } from 'react-router-dom'
 import {Heart, HeartFill} from 'react-bootstrap-icons'
 import {CircularProgressbar, buildStyles} from 'react-circular-progressbar'
+import defaultImg from '../images/default.jpg'
 
 
 
@@ -31,12 +32,14 @@ function ReviewsList({reviews}){
             <div className='text-center p-2 mt-2'>
               {/* <img src={review.profile_image}></img> */}
               <Figure className='reviewList_immagine-profilo mx-auto d-flex justify-content-center align-items-center'>
+              {console.log(review.profile_image)}
+                
                 <Figure.Image 
                   className='reviewList_immagine-profilo'
                   fluid={true} 
                   thumbnail={false}
                   roundedCircle={true} 
-                  src={review.profile_image ? review.profile_image : null}
+                  src={review.profile_image ? review.profile_image : defaultImg}
                 />
                 <Figure.Caption as={Link} className='reviewsList__link fs-4 mx-2' to={`/profilo/${review.author_name}`} >
                 {review.author_name}

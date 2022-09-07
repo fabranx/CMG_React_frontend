@@ -2,7 +2,7 @@ import './musica.css'
 import {Container, Form, Button} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CustomCarousel from '../custom_carousel/custom_carousel';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import {client} from "../../Client"
 import Loading from '../loadingpage/loadingpage';
 import SearchResults from '../search_results/search_results';
@@ -22,9 +22,10 @@ function Musica() {
   const [musicSearched, setMusicSearched] = useState(JSON.parse(sessionStorage.getItem('musicdata')) || [])
   const [isSearchFetched, setSearchFetched] = useState(false)
 
-  const generi = ["new-release", "alternative", "rock", "hard-rock", "heavy-metal", "road-trip",  "blues", "pop", "classical", "dance", "electronic", "jazz"]
 
-  function fetchMusic(controller){
+  const fetchMusic = useCallback((controller) => {
+    const generi = ["new-release", "alternative", "rock", "hard-rock", "heavy-metal", "road-trip",  "blues", "pop", "classical", "dance", "electronic", "jazz"]
+
     if(reloadContent)
     {
       let musicsearch = sessionStorage.getItem('musicsearch')
@@ -36,6 +37,9 @@ function Musica() {
         setDataFetched(true)
       }
       else{  
+        if(!controller){
+          controller = new AbortController()
+        }
         client.LatestAlbumSpotify(generi, controller)
         .then((res) => {
           setMusicData(res.data)
@@ -49,7 +53,8 @@ function Musica() {
         })
       }
     }
-  }
+  },[reloadContent])
+
 
   useEffect(() => {
     const controller = new AbortController()
@@ -58,7 +63,7 @@ function Musica() {
       controller.abort()
       setReloadContent(false)
     }
-  }, [fetchError])
+  }, [fetchError, fetchMusic])
 
 
   function onFormSearchChange(e)

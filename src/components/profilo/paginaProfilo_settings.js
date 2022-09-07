@@ -79,13 +79,10 @@ function Settings(props) {
         if(res.status === 200)
         {
           setIsPasswordChanged(true)
-          const timer = setTimeout(() => {
-            client.logout()
-            .then((res) => {
-              setIsLoggedIn(false)
-              client.deleteUserData()
-            })
-            .catch((err) => {console.log(err)})
+          setTimeout(() => {
+            setIsLoggedIn(false)          
+            client.deleteUserData()
+            client.logout().catch((err) => {})
           }, 3000)
         }
       })

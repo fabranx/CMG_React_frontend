@@ -1,7 +1,6 @@
-import {Accordion, Container, Row, Col, Button} from 'react-bootstrap'
-import {useEffect} from 'react'
+import {Accordion, Container, Row, Col} from 'react-bootstrap'
 import {DateTime} from 'luxon'
-import {Heart, HeartFill, Trash} from 'react-bootstrap-icons'
+import {Heart, HeartFill} from 'react-bootstrap-icons'
 import {CircularProgressbar, buildStyles} from 'react-circular-progressbar'
 import { Link } from 'react-router-dom';
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {Container, Form, Button} from 'react-bootstrap'
 import {Heart, HeartFill, CheckCircleFill, XCircleFill} from 'react-bootstrap-icons'
 import './review_field.css'

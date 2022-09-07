@@ -12,7 +12,7 @@ import Footer from "../footer/footer"
 function ResetPasswordConfirm() {
 	let {uid} = useParams()
 	let {token} = useParams()
-  const {isLoggedIn, setIsLoggedIn} = React.useContext(LoginContext)
+  const {isLoggedIn} = React.useContext(LoginContext)
 	const { handleSubmit, clearErrors, setError, control, formState: { errors }} = useForm();
 	const [isPasswordReset, setIsPasswordReset] = useState(false)
 

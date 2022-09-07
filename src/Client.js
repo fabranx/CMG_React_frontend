@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 
-const address = 'http://localhost:8080'
+// const address = 'http://localhost:8080'
+const address = 'https://boiling-hollows-71659.herokuapp.com'
 
 class Client {
     constructor() {

@@ -12,7 +12,7 @@ import {LoginContext} from "../context"
 
 function PaginaProfiloReviewsTab({username}){
 
-  const {isLoggedIn, setIsLoggedIn} = useContext(LoginContext)
+  const {setIsLoggedIn} = useContext(LoginContext)
 
   const [reviewFetchedData, setReviewFetchedData] = useState(false)
   const [film, setFilm] = useState([])
@@ -37,15 +37,9 @@ function PaginaProfiloReviewsTab({username}){
     }
 
     const errorOnRefreshToken = () => {
-      client.logout()
-      .then((res) => {
-        setIsLoggedIn(false)
-        client.deleteUserData()
-      })
-      .catch((error) => {
-        setIsLoggedIn(false)
-        client.deleteUserData()
-      })
+      setIsLoggedIn(false)
+      client.deleteUserData()
+      client.logout().catch((err) => {})
     }
     requestsWithTokenHandler(getReviews, errorOnRefreshToken)
 
@@ -55,11 +49,10 @@ function PaginaProfiloReviewsTab({username}){
       setFilm([])
       setMusica([])
     }
-    
-  }, [])
+  }, [setIsLoggedIn, username])
 
   return(
-    <Container>
+    <Container className="mb-5">
     <p>Recensioni</p>
     {reviewFetchedData ? (
       <Tabs

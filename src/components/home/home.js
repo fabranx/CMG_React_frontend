@@ -7,7 +7,7 @@ import {LoginContext} from '../context'
 import {client} from '../../Client'
 
 function Home() {
-  const {isLoggedIn, setIsLoggedIn} = React.useContext(LoginContext)
+  const {isLoggedIn} = React.useContext(LoginContext)
 
 	const [alertShow, setAlertShow] = React.useState(sessionStorage.getItem('alert') === 'false' ? false : true) 
 

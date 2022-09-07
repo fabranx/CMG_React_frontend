@@ -3,7 +3,7 @@ import React from 'react'
 import {useEffect, useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './paginaProfilo.css'
-import {Container, Image, Button, Figure, Col, Row, Tabs, Tab} from 'react-bootstrap'
+import {Container, Image, Button, Figure, Col, Row} from 'react-bootstrap'
 import {GearFill} from 'react-bootstrap-icons'
 import {LoginContext} from "../context"
 import { client, requestsWithTokenHandler } from '../../Client'
@@ -12,6 +12,7 @@ import Loading from '../loadingpage/loadingpage'
 import Settings from './paginaProfilo_settings'
 import PaginaProfiloReviewsTab from './paginaProfilo_Tab'
 import Footer from '../footer/footer'
+import defaultImg from '../images/default.jpg'
 
 
 function Profilo() {
@@ -73,7 +74,7 @@ function Profilo() {
       setShowSettings(false)
       setLoggedUserProfile(false)
     }
-  }, [username])
+  }, [setIsLoggedIn, username])
 
   return(
       <>
@@ -112,7 +113,7 @@ function Profilo() {
                   fluid={true} 
                   thumbnail={true}
                   roundedCircle={true} 
-                  src={userData.image ? userData.image : null}
+                  src={userData.image ? userData.image : defaultImg}
                 />
                 <Figure.Caption className='fs-1 fst-normal text-light text-center'>
                   {username}

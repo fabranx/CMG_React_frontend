@@ -2,7 +2,7 @@ import './giochi.css'
 import {Container, Form, Button} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CustomCarousel from '../custom_carousel/custom_carousel';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import {client} from "../../Client"
 import Loading from '../loadingpage/loadingpage';
 import SearchResults from '../search_results/search_results';
@@ -20,11 +20,11 @@ function Giochi() {
   const [gamesSearched, setGamesSearched] = useState(JSON.parse(sessionStorage.getItem('gamedata')) || [])
   const [isSearchFetched, setSearchFetched] = useState(false)
 
-  const generi = {'Fighting':'Picchiaduro', 'Shooter':'Shooter','Adventure':'Avventura', 'Platform':'Platform',
+  const generi = useMemo(() => ({'Fighting':'Picchiaduro', 'Shooter':'Shooter','Adventure':'Avventura', 'Platform':'Platform',
   'Racing':'Corse','Role-playing (RPG)':'Gioco di ruolo','Simulator':'Simulazione',
-  'Sport':'Sportivi','Strategy':'Strategici', "Hack and slash/Beat 'em up":"Hack and slash/Beat 'em up", 'Recent':'Recenti'}
+  'Sport':'Sportivi','Strategy':'Strategici', "Hack and slash/Beat 'em up":"Hack and slash/Beat 'em up", 'Recent':'Recenti'}), []) 
 
-  function fetchGames(controller){
+  const fetchGames = useCallback((controller) => {
     if(reloadContent)
     {
       let gamesearch = sessionStorage.getItem('gamesearch') 
@@ -34,7 +34,10 @@ function Giochi() {
         setSearchFetched(true)
         setDataFetched(true)
       }
-      else{  
+      else{
+        if(!controller){
+          controller = new AbortController()
+        }  
         client.LatestGamesIGDB(Object.keys(generi), controller)
         .then((res) => {
           setGamesData(res.data)
@@ -48,8 +51,7 @@ function Giochi() {
         })
       }
     }
-  }
-
+  },[generi, reloadContent])
 
   useEffect(() => {
     const controller = new AbortController()
@@ -58,7 +60,7 @@ function Giochi() {
       controller.abort()
       setReloadContent(false)
     }
-  }, [fetchError])
+  }, [fetchError, fetchGames])
 
 
   function onFormChange(e)

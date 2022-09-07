@@ -24,7 +24,7 @@ function Reviews(props){
     idcode,
     ...modalprops} = props
 
-  const {isLoggedIn, setIsLoggedIn} = useContext(LoginContext)
+  const {setIsLoggedIn} = useContext(LoginContext)
   const [mutableReviews, setMutableReviews] = useState(reviews)
   const [searchReview, setSearchReview] = useState('')
 

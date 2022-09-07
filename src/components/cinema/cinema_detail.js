@@ -49,7 +49,7 @@ function CinemaDetail()
 
     client.getReviewsByMovieId(tmdbID)
     .then(res =>{
-      setUsersReviews(res.data.filter(review => review.author != client.pk))
+      setUsersReviews(res.data.filter(review => review.author !== client.pk))
     })
     .catch(err => console.log(err))
 

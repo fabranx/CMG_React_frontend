@@ -9,7 +9,7 @@ import Footer from '../footer/footer'
 
 
 function ResetPassword() {
-  const {isLoggedIn, setIsLoggedIn} = React.useContext(LoginContext)
+  const {isLoggedIn} = React.useContext(LoginContext)
   const [isEmailSend, setIsEmailSend] = useState(false)
   const [email, setEmail] = useState('')
   const { handleSubmit, clearErrors, control, formState: { errors }} = useForm();
