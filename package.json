@@ -25,14 +25,14 @@
     "react-select": "^5.4.0",
     "web-vitals": "^3.0.1"
   },
+  "overrides": {
+    "autoprefixer": "10.4.8"
+  },
   "scripts": {
-    "start": "react-scripts start HOST=0.0.0.0",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "overrides": {
-    "autoprefixer": "10.4.8"
   },
   "eslintConfig": {
     "extends": [
