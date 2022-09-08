@@ -49,7 +49,7 @@ function Cinema() {
         })
       }
     }
-  },[])
+  },[generi, reloadContent])
 
   useEffect(() => {
     const controller = new AbortController()

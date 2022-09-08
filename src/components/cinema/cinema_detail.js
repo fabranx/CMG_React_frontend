@@ -69,7 +69,7 @@ function CinemaDetail()
       .catch(err => console.log(err))
 
     }
-  }, [tmdbID])
+  }, [tmdbID, isLoggedIn])
 
   const location = useLocation()
   useEffect(() => {
