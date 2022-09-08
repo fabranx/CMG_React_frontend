@@ -2,7 +2,7 @@ import './cinema.css'
 import {Container, Form, Button} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CustomCarousel from '../custom_carousel/custom_carousel';
-import { useEffect, useState, useCallback} from 'react';
+import { useEffect, useState, useCallback, useMemo} from 'react';
 import {client} from "../../Client"
 import Loading from '../loadingpage/loadingpage';
 import SearchResults from '../search_results/search_results';
@@ -20,7 +20,7 @@ function Cinema() {
   const [moviesSearched, setMoviesSearched] = useState(JSON.parse(sessionStorage.getItem('moviedata')) || [])
   const [isSearchFetched, setSearchFetched] = useState(false)
 
-  const generi = ['Animazione', 'Azione', 'Commedia', 'Avventura', 'Documentario', 'Fantasy', 'Horror', 'Fantascienza', 'Thriller']
+  const generi = useMemo(() => (['Animazione', 'Azione', 'Commedia', 'Avventura', 'Documentario', 'Fantasy', 'Horror', 'Fantascienza', 'Thriller']), []) 
 
   const fetchMovies = useCallback((controller) => {
     if(reloadContent)
