@@ -60,6 +60,24 @@ function CustomCarousel(props)
   },[props.dataCategory])
 
   const responsive = {
+    desktop_xl: {
+      breakpoint: {
+        max: 7680,
+        min: 4096,
+      },
+      items: 9,
+      slidesToSlide: 3,
+      partialVisibilityGutter: 40
+    },
+    desktop_lg: {
+      breakpoint: {
+        max: 4096,
+        min: 1500,
+      },
+      items: 7,
+      slidesToSlide: 3,
+      partialVisibilityGutter: 40
+    },
     desktop_md: {
       breakpoint: {
         max: 1500,
