@@ -107,7 +107,7 @@ function Profilo() {
                   </Col> : null
                 }
               </Row>
-              <Figure className='immagine-profilo mx-auto d-block'>
+              <Figure className='mx-auto d-block'>
                 <Figure.Image as={Image}
                   className='immagine-profilo mx-auto d-block'
                   fluid={true} 
