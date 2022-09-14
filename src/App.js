@@ -19,6 +19,7 @@ import Giochi from './components/giochi/giochi';
 import GiochiDetail from './components/giochi/giochi_detail';
 import Musica from './components/musica/musica';
 import MusicaDetail from './components/musica/musica_detail';
+import Footer from './components/footer/footer';
 import React from 'react';
 import { LoginContext } from "./components/context";
 import { useEffect, useState } from 'react';
@@ -64,7 +65,13 @@ function App() {
   return (
     <>
     {isloading ?
-      <Loading />
+      <div style={{
+        position: "fixed", minWidth: "100%", maxWidth: "100%",
+        display: "flex",flexDirection: "column", minHeight: "100%"
+      }}>
+        <Loading />
+        <Footer />
+      </div> 
       :
       <LoginContext.Provider value={{isLoggedIn, setIsLoggedIn}}>
       <Router>
