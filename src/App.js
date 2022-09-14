@@ -23,7 +23,6 @@ import React from 'react';
 import { LoginContext } from "./components/context";
 import { useEffect, useState } from 'react';
 import {client} from "./Client";
-import Footer from './components/footer/footer';
 
 
 function App() {
@@ -65,10 +64,7 @@ function App() {
   return (
     <>
     {isloading ?
-      <>
-        <Loading/>
-        <Footer/>
-      </> 
+      <Loading />
       :
       <LoginContext.Provider value={{isLoggedIn, setIsLoggedIn}}>
       <Router>
