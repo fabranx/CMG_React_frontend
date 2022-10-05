@@ -1,5 +1,5 @@
 import './musica_detail.css'
-import {useState, useEffect, useContext, useMemo} from 'react'
+import {useState, useEffect, useContext, useMemo, useCallback} from 'react'
 import {useLocation, useParams} from 'react-router-dom'
 import { Button, Container, Image, Row, Col} from 'react-bootstrap'
 import { client, requestsWithTokenHandler } from '../../Client'
@@ -38,6 +38,22 @@ function MusicaDetail()
   const [formSuccessfullySubmit, setFormSuccessfullySubmit] = useState(false)
   const [formSubmitError, setFormSubmitError] = useState(false)
 
+  const getMusicByUserCallback = useCallback(() => {
+    client.getMusicByUser(client.username)
+    .then(res => {
+      // filtra tramite le recensioni dell'utente ID e restituisce solo il solo primo elemento essendo ID univoco
+      let userReviewData = res.data.filter(music => music.albumId === albumID)[0]
+      if(userReviewData)  // se esiste un recensione per l'album avente id = albumID
+      {
+        setUserReviewMusicData(userReviewData) 
+        setVote(userReviewData.rating)
+        setFavourite(userReviewData.favourite)
+        setTextReview(userReviewData.review)
+      }
+    })
+    .catch(err => console.log(err))
+  }, [albumID])
+
   useEffect(() => {
     client.AlbumInfoSpotify(albumID)
     .then(res => {
@@ -56,21 +72,9 @@ function MusicaDetail()
     .catch(err => console.log(err))
 
     if(isLoggedIn){
-      client.getMusicByUser(client.username)
-      .then(res => {
-        // filtra tramite le recensioni dell'utente ID e restituisce solo il solo primo elemento essendo ID univoco
-        let userReviewData = res.data.filter(music => music.albumId === albumID)[0]
-        if(userReviewData)  // se esiste un recensione per l'album avente id = albumID
-        {
-          setUserReviewMusicData(userReviewData) 
-          setVote(userReviewData.rating)
-          setFavourite(userReviewData.favourite)
-          setTextReview(userReviewData.review)
-        }
-      })
-      .catch(err => console.log(err))
+      getMusicByUserCallback()
     }
-  }, [albumID, isLoggedIn])
+  }, [albumID, isLoggedIn, getMusicByUserCallback])
 
   const location = useLocation()
   useEffect(() => {
@@ -112,6 +116,7 @@ function MusicaDetail()
         .then(e => {
           setFormSuccessfullySubmit(true)
           setFormSubmitError(false)
+          getMusicByUserCallback()
         })
         .catch(err => {
           setFormSuccessfullySubmit(false)
@@ -123,6 +128,7 @@ function MusicaDetail()
         .then(e => {
           setFormSuccessfullySubmit(true)
           setFormSubmitError(false)
+          getMusicByUserCallback()
         })
         .catch(err => {
           setFormSuccessfullySubmit(false)

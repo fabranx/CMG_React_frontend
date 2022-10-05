@@ -1,5 +1,5 @@
 import './giochi_detail.css'
-import {useState, useEffect, useContext, useMemo} from 'react'
+import {useState, useEffect, useContext, useMemo, useCallback} from 'react'
 import {useLocation, useParams} from 'react-router-dom'
 import { Container, Image, Col, Row } from 'react-bootstrap'
 import { client, requestsWithTokenHandler } from '../../Client'
@@ -36,7 +36,22 @@ function GiochiDetail()
   const [formSuccessfullySubmit, setFormSuccessfullySubmit] = useState(false)
   const [formSubmitError, setFormSubmitError] = useState(false)
 
-  const [reload, setReload] = useState(false)
+  
+  const getGamesByUserCallback = useCallback(() => {
+    client.getGamesByUser(client.username)
+    .then(res => {
+      // filtra tramite le recensioni dell'utente ID e restituisce solo il solo primo elemento essendo ID univoco
+      let userReviewData = res.data.filter(game => game.gameId === Number(igdbID))[0]
+      if(userReviewData)  // se esiste un recensione per il film avente id = tmdbID
+      {
+        setUserReviewGameData(userReviewData) 
+        setVote(userReviewData.rating)
+        setFavourite(userReviewData.favourite)
+        setTextReview(userReviewData.review)
+      }
+    })
+    .catch(err => console.log(err))
+  }, [igdbID])
 
   useEffect(() => {
     client.GameInfo(igdbID)
@@ -56,21 +71,9 @@ function GiochiDetail()
     .catch(err => console.log(err))
 
     if(isLoggedIn){
-      client.getGamesByUser(client.username)
-      .then(res => {
-        // filtra tramite le recensioni dell'utente ID e restituisce solo il solo primo elemento essendo ID univoco
-        let userReviewData = res.data.filter(game => game.gameId === Number(igdbID))[0]
-        if(userReviewData)  // se esiste un recensione per il film avente id = tmdbID
-        {
-          setUserReviewGameData(userReviewData) 
-          setVote(userReviewData.rating)
-          setFavourite(userReviewData.favourite)
-          setTextReview(userReviewData.review)
-        }
-      })
-      .catch(err => console.log(err))
+      getGamesByUserCallback()
     }
-  }, [igdbID , reload, isLoggedIn])
+  }, [igdbID , isLoggedIn, getGamesByUserCallback])
 
   const location = useLocation()
   useEffect(() => {
@@ -111,6 +114,7 @@ function GiochiDetail()
         .then(e => {
           setFormSuccessfullySubmit(true)
           setFormSubmitError(false)
+          getGamesByUserCallback()
         })
         .catch(err => {
           setFormSuccessfullySubmit(false)
@@ -122,8 +126,7 @@ function GiochiDetail()
         .then(e => {
           setFormSuccessfullySubmit(true)
           setFormSubmitError(false)
-          setReload(!reload)  // tramite useEffect aggiorna il componente in modo che si ottiene l'id della recensione così da evitare la doppia recensione dello stesso titolo
-
+          getGamesByUserCallback()
         })
         .catch(err => {
           setFormSuccessfullySubmit(false)

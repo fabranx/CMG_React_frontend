@@ -1,5 +1,5 @@
 import './cinema_detail.css'
-import {useState, useEffect, useContext, useMemo} from 'react'
+import {useState, useEffect, useContext, useMemo, useCallback} from 'react'
 import {useLocation, useParams} from 'react-router-dom'
 import { Container, Image, Row, Col } from 'react-bootstrap'
 import { client, requestsWithTokenHandler } from '../../Client'
@@ -36,6 +36,24 @@ function CinemaDetail()
   const [formSuccessfullySubmit, setFormSuccessfullySubmit] = useState(false)
   const [formSubmitError, setFormSubmitError] = useState(false)
 
+  const getMoviesByUserCallback = useCallback(
+    () => {
+      client.getMoviesByUser(client.username)
+      .then(res => {
+        // filtra tramite le recensioni dell'utente ID e restituisce solo il solo primo elemento essendo ID univoco
+        let userReviewData = res.data.filter(movie => movie.movieId === Number(tmdbID))[0]
+        if(userReviewData)  // se esiste un recensione per il film avente id = tmdbID
+        {
+          setUserReviewMovieData(userReviewData) 
+          setVote(userReviewData.rating)
+          setFavourite(userReviewData.favourite)
+          setTextReview(userReviewData.review)
+        }
+      })
+      .catch(err => console.log(err))
+    }, [tmdbID]
+  )
+
   useEffect(() => {
     client.MovieInfo(tmdbID)
     .then(res => {
@@ -54,22 +72,9 @@ function CinemaDetail()
     .catch(err => console.log(err))
 
     if(isLoggedIn){
-      client.getMoviesByUser(client.username)
-      .then(res => {
-        // filtra tramite le recensioni dell'utente ID e restituisce solo il solo primo elemento essendo ID univoco
-        let userReviewData = res.data.filter(movie => movie.movieId === Number(tmdbID))[0]
-        if(userReviewData)  // se esiste un recensione per il film avente id = tmdbID
-        {
-          setUserReviewMovieData(userReviewData) 
-          setVote(userReviewData.rating)
-          setFavourite(userReviewData.favourite)
-          setTextReview(userReviewData.review)
-        }
-      })
-      .catch(err => console.log(err))
-
+      getMoviesByUserCallback()
     }
-  }, [tmdbID, isLoggedIn])
+  }, [tmdbID, isLoggedIn, getMoviesByUserCallback])
 
   const location = useLocation()
   useEffect(() => {
@@ -120,6 +125,7 @@ function CinemaDetail()
         .then(e => {
           setFormSuccessfullySubmit(true)
           setFormSubmitError(false)
+          getMoviesByUserCallback()
         })
         .catch(err => {
           setFormSuccessfullySubmit(false)
@@ -131,6 +137,7 @@ function CinemaDetail()
         .then(e => {
           setFormSuccessfullySubmit(true)
           setFormSubmitError(false)
+          getMoviesByUserCallback()
         })
         .catch(err => {
           setFormSuccessfullySubmit(false)
