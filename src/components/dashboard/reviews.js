@@ -1,6 +1,6 @@
 import {Button, Container, Modal, Form} from 'react-bootstrap'
 import { Link } from 'react-router-dom';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {DateTime} from 'luxon'
 import {Heart, HeartFill, Trash} from 'react-bootstrap-icons'
@@ -27,6 +27,10 @@ function Reviews(props){
   const {setIsLoggedIn} = useContext(LoginContext)
   const [mutableReviews, setMutableReviews] = useState(reviews)
   const [searchReview, setSearchReview] = useState('')
+
+  useEffect(() => {
+    setMutableReviews(reviews)
+  }, [reviews])
 
   const onDeleteSubmit = (id) => {
 
