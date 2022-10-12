@@ -3,7 +3,7 @@ import axios from 'axios'
 
 // const address = 'http://localhost:8080'
 // const address = 'https://boiling-hollows-71659.herokuapp.com'
-const address = 'https://fabranx.pythonanywhere.com/'
+const address = 'https://fabranx.pythonanywhere.com'
 
 
 class Client {
