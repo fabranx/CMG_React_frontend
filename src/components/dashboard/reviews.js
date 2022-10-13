@@ -135,7 +135,7 @@ function Reviews(props){
                 return (
                   <div  
                     key={review[idcode]} 
-                    className='fs-6 text-break border border-secondary rounded border-3 m-4 p-4' 
+                    className='fs-6 text-break border border-secondary rounded-3 border-3 my-4 mx-sm-0 mx-md-4 p-md-4 p-2' 
                   >
                     <div className='reviews__link fs-3 text-center mb-4'>
                       <Link className='reviews__link' to={`${urlpath}${review[idcode]}`}>{review.title}</Link>
@@ -163,7 +163,7 @@ function Reviews(props){
                       />
                     </Container>
                     <p className='fw-light'>Recensione:</p>
-                    <div className='border border-secondary rounded p-3'>
+                    <div className='border border-1 border-secondary rounded-3 p-sm-2 p-md-3 p-1'>
                       <p className='fw-light'>{review.review}</p>
                     </div>
                     <div className='d-flex justify-content-end mt-3'>
