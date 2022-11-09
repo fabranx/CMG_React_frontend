@@ -56,11 +56,11 @@ function TabReviewsItems({reviews, category}) {
             <Accordion.Item eventKey={index} key={review.id}>
             <Accordion.Header>
               <Row className='d-flex justify-content-between w-100'>
-                <Col xs='auto'>
+                <Col xs='8'>
                   <span className=''>{review.title}</span>
                 </Col>
-                <Col xs='auto'>
-                  <div className='d-flex'>
+                <Col xs='4'>
+                  <div className='d-flex justify-content-end'>
                   <span className='mx-3'>
                     {review.favourite ? <HeartFill fill='red'/> : <Heart/>}
                   </span>
@@ -71,7 +71,7 @@ function TabReviewsItems({reviews, category}) {
             </Accordion.Header>
             <Accordion.Body>
                   <div  
-                    className='fs-6 text-break  m-4 p-4' 
+                    className='fs-6 text-break  m-md-4 p-md-4' 
                   >
                     <div className='tab_items__link fs-3 text-center mb-4'>
                       <Link className='tab_items__link' to={`${urlpath}${review[idCode]}`}>{review.title}</Link>
