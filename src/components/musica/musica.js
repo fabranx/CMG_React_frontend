@@ -24,7 +24,7 @@ function Musica() {
 
 
   const fetchMusic = useCallback((controller) => {
-    const generi = ["new-release", "alternative", "rock", "hard-rock", "heavy-metal", "road-trip",  "blues", "pop", "classical", "dance", "electronic", "jazz"]
+    const generi = ["alternative", "rock", "hard-rock", "heavy-metal", "metal", "grunge", "road-trip",  "blues", "pop", "classical", "disco", "dance", "electronic", "jazz"]
 
     if(reloadContent)
     {
